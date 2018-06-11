@@ -20,10 +20,13 @@ int Train(const std::string& initialModelFile,
           const std::string& resultModelFile)
 {
     TLangModel model;
-    if (!initialModelFile.empty()) {
+    if (initialModelFile.empty()) {
+        model.Train(datasetFile, alphabetFile);
+    } else {
         model.Load(initialModelFile);
+        std::wstring text = UTF8ToWide(LoadFile(datasetFile));
+        model.AddTextFragment(text, 1);
     }
-    model.Train(datasetFile, alphabetFile);
     model.Dump(resultModelFile);
     return 0;
 }
