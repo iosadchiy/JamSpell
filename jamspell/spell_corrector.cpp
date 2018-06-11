@@ -270,6 +270,11 @@ void TSpellCorrector::AddTextFragment(const std::wstring& text, uint32_t count) 
     }
 }
 
+const TLangModel& TSpellCorrector::GetLangModel() const {
+    return LangModel;
+}
+
+
 template<typename T>
 inline void AddVec(T& target, const T& source) {
     target.insert(target.end(), source.begin(), source.end());
